@@ -1,0 +1,66 @@
+spring:
+  application:
+    name: eureka
+
+---
+spring:
+  profiles: peer1
+security:
+  basic:
+    enabled: true
+  user:
+    name: admin
+    password: admin2017
+server:
+  port: 8101
+eureka:
+  instance:
+    hostname: 0.0.0.0
+    prefer-ip-address: true
+  server:
+    enable-self-preservation: true
+  client:
+    serviceUrl:
+      defaultZone: http://admin:admin2017@localhost:8102/eureka/,http://admin:admin2017@localhost:8103/eureka/
+
+---
+spring:
+  profiles: peer2
+security:
+  basic:
+    enabled: true
+  user:
+    name: admin
+    password: admin2017
+server:
+  port: 8102
+eureka:
+  instance:
+    hostname: 0.0.0.0
+    prefer-ip-address: true
+  server:
+    enable-self-preservation: true
+  client:
+    serviceUrl:
+      defaultZone: http://admin:admin2017@localhost:8101/eureka/,http://admin:admin2017@localhost:8103/eureka/
+
+---
+spring:
+  profiles: peer3
+security:
+  basic:
+    enabled: true
+  user:
+    name: admin
+    password: admin2017
+server:
+  port: 8103
+eureka:
+  instance:
+    hostname: 0.0.0.0
+    prefer-ip-address: true
+  server:
+    enable-self-preservation: true
+  client:
+    serviceUrl:
+      defaultZone: http://admin:admin2017@localhost:8101/eureka/,http://admin:admin2017@localhost:8102/eureka/
